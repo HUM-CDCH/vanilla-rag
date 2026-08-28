@@ -1,0 +1,27 @@
+# Vanilla RAG pipeline configuration.
+# Every key is optional — anything omitted falls back to the defaults in
+# vanilla_rag/config.py. Keys must match the RAGConfig field names.
+
+# --- Chunking ---
+chunk_size = 512          # tokens per chunk
+chunk_overlap = 0         # baseline uses plain segmentation, no overlap
+
+# --- Embedding ---
+embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
+embedding_dim = 384
+
+# --- Vector database ---
+# Milvus Lite: a local file path. For a Milvus server use e.g. "http://localhost:19530".
+milvus_uri = "milvus_vanilla_rag.db"
+collection_name = "rag_chunks"
+metric_type = "COSINE"
+
+# --- Retrieval ---
+top_k_candidates = 20          # candidates fetched before budget packing
+context_budget_tokens = 5000   # max retrieved context in the LLM prompt
+
+# --- Generation ---
+anthropic_model = "claude-opus-5"
+ollama_model = "gemma4:e4b"
+ollama_host = "http://localhost:11434"
+max_answer_tokens = 16000
